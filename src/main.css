@@ -1,22 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap');
 
-* {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-}
-
-html {
-	font-size: 62.5%;
-}
-
 :root {
 	--color-purple: #5f3899;
 	--color-purple-light: #5a16e9;
-	--color-purple-bg: #26273a;
+	--color-purple-bg: #0f0520;
 	--color-orange: #ff5200;
 	--color-light: #fbfbfb;
-	--color-dark: #101010;
+	--color-dark: #010316;
 
 	--font-family: 'Poppins', sans-serif;
 	--font-size: 1.6rem;
@@ -28,6 +18,21 @@ html {
 	--font-600: 600;
 	--font-700: 700;
 	--font-800: 800;
+
+	--shadow: 0.2rem 0.2rem 1.5rem rgba(90, 22, 233, 0.5);
+	--radius: 0.8rem;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	scrollbar-width: thin;
+	scrollbar-color: var(--color-purple-light) rgba(0, 0, 0, 0);
+}
+
+html {
+	font-size: 62.5%;
 }
 
 body {
@@ -37,3 +42,129 @@ body {
 	font-family: var(--font-family);
 	font-weight: var(--font-400);
 }
+
+/* scroll */
+::-webkit-scrollbar {
+	overflow: overlay;
+	width: 0.8rem;
+}
+
+::-webkit-scrollbar-track {
+	display: initial;
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: var(--color-purple);
+	border-radius: 0.5rem;
+}
+/* scroll */
+
+/* loading */
+.loading-container {
+	display: grid;
+	place-items: center;
+	margin: 2rem;
+}
+.lds-dual-ring {
+	display: inline-block;
+	width: 80px;
+	height: 80px;
+}
+.lds-dual-ring:after {
+	content: ' ';
+	display: block;
+	width: 64px;
+	height: 64px;
+	margin: 8px;
+	border-radius: 50%;
+	border: 6px solid var(--color-purple-light);
+	border-color: var(--color-purple-light) transparent var(--color-purple-light)
+		transparent;
+	animation: lds-dual-ring 1.2s linear infinite;
+}
+@keyframes lds-dual-ring {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+/* loading */
+
+.button {
+	height: 4.5rem;
+	width: 100%;
+	border: none;
+	background: var(--color-purple);
+	transition: background-color 0.3s linear;
+	border-radius: 20rem;
+	color: var(--color-light);
+	cursor: pointer;
+	font-weight: var(--font-600);
+}
+.button:hover {
+	background: var(--color-purple-light);
+}
+
+.form-input {
+	height: 4.5rem;
+	width: 100%;
+	border-radius: 20rem;
+	padding: 2rem;
+	outline: none;
+	border: 0.2rem solid var(--color-orange);
+	background: transparent;
+	color: var(--color-light);
+}
+.form-input::placeholder {
+	color: var(--color-purple-light);
+}
+
+/* login */
+.login {
+	min-height: 100vh;
+	width: 100%;
+	position: relative;
+	display: grid;
+	place-items: center;
+}
+.login-bg {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+.login-form {
+	width: 90%;
+	max-width: 40rem;
+	background: var(--color-purple-bg);
+	border-radius: var(--radius);
+	padding: 3rem 2rem;
+	position: relative;
+	box-shadow: var(--shadow);
+	display: flex;
+	flex-direction: column;
+	row-gap: 1.5rem;
+	align-items: center;
+}
+.login-form-logo {
+	height: 7rem;
+	width: 7rem;
+}
+.login-form-title {
+	margin-bottom: 2rem;
+}
+.login-form button {
+	margin-top: 2rem;
+}
+@media screen and (min-width: 800px) {
+	.login-bg {
+		width: 50%;
+	}
+	.login-form {
+		padding: 4rem;
+	}
+}
+/* login */
