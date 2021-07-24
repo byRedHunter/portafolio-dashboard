@@ -1,11 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import Image from '../shared/Image'
 import { ROUTES } from '../constants/routes'
+import { InterfaceContext } from '../context/interface/InterfaceContext'
 
 const Sidebar = () => {
+	const stateInterface = useContext(InterfaceContext)
+	const { sidebarActive } = stateInterface
+
 	return (
-		<div className='sidebar'>
+		<div className={`sidebar ${sidebarActive ? 'active' : null}`}>
 			<Image
 				className='sidebar-bg'
 				src='/images/bg-main.png'

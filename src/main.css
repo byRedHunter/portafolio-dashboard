@@ -236,9 +236,12 @@ body {
 	padding: 3rem;
 	display: none;
 	z-index: 2;
+	flex-direction: column;
+	align-items: center;
 }
 .sidebar.active {
 	display: flex;
+	transition: display 0.3s linear;
 }
 .sidebar-bg {
 	position: absolute;
@@ -313,8 +316,6 @@ body {
 	.sidebar {
 		padding: 6rem 3rem;
 		display: flex;
-		flex-direction: column;
-		align-items: center;
 	}
 }
 /* sidebar */
