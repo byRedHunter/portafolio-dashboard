@@ -1,6 +1,7 @@
 import React from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import 'react-lazy-load-image-component/src/effects/blur.css'
+import PropTypes from 'prop-types'
 
 const Image = ({ className, src, alt }) => {
 	return (
@@ -15,6 +16,12 @@ const Image = ({ className, src, alt }) => {
 			/>
 		</figure>
 	)
+}
+
+Image.propTypes = {
+	src: PropTypes.string.isRequired,
+	alt: PropTypes.string.isRequired,
+	className: PropTypes.string,
 }
 
 export default Image
