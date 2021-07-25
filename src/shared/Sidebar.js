@@ -9,7 +9,7 @@ const Sidebar = () => {
 	const { sidebarActive } = stateInterface
 
 	return (
-		<div className={`sidebar ${sidebarActive ? 'active' : null}`}>
+		<div className={`sidebar ${sidebarActive ? 'active' : ''}`}>
 			<Image
 				className='sidebar-bg'
 				src='/images/bg-main.png'
