@@ -1,11 +1,44 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
 import PropTypes from 'prop-types'
+import { BadgeContext } from '../context/badges/BadgeContext'
 
 const BadgeItem = ({ _id, title }) => {
+	const stateBadge = useContext(BadgeContext)
+	const { editBadge } = stateBadge
+	const [editing, setEditing] = useState(false)
+	const [value, setValue] = useState(title)
+
+	const handleEdit = () => {
+		editBadge({ _id, title: value })
+		setEditing(false)
+	}
+
 	return (
 		<div className='badge-item'>
-			<span>{title}</span>{' '}
-			<img className='pointer' src='/images/icons/edit.svg' alt='Edit icon' />
+			<input
+				type='text'
+				className='badge-item-input'
+				value={value}
+				disabled={!editing ? true : false}
+				onChange={({ target }) => {
+					setValue(target.value)
+				}}
+			/>
+			{!editing ? (
+				<img
+					className='pointer'
+					src='/images/icons/edit.svg'
+					alt='Edit icon'
+					onClick={() => setEditing(true)}
+				/>
+			) : (
+				<img
+					className='pointer'
+					src='/images/icons/save.svg'
+					alt='Save icon'
+					onClick={handleEdit}
+				/>
+			)}
 		</div>
 	)
 }

@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react'
 import axios from 'axios'
 import { BadgeReducer } from './BadgeReducer'
-import { BADGE_LIST, BADGE_SAVE } from '../../constants/actions'
+import { BADGE_EDIT, BADGE_LIST, BADGE_SAVE } from '../../constants/actions'
 import { showToast } from '../../utils/alerts'
 import { BadgeContext } from './BadgeContext'
 
@@ -45,9 +45,30 @@ const BadgeState = ({ children }) => {
 		}
 	}
 
+	// editar badge
+	const editBadge = async (badge) => {
+		try {
+			const result = await axios.put(uri + `/${badge._id}`, badge)
+
+			showToast(result.data.message, 'success')
+
+			dispatch({
+				type: BADGE_EDIT,
+				payload: badge,
+			})
+		} catch (error) {
+			showToast(error.response.data, 'error')
+		}
+	}
+
 	return (
 		<BadgeContext.Provider
-			value={{ badgeList: state.badgeList, showBadgeList, addBadgeList }}
+			value={{
+				badgeList: state.badgeList,
+				showBadgeList,
+				addBadgeList,
+				editBadge,
+			}}
 		>
 			{children}
 		</BadgeContext.Provider>

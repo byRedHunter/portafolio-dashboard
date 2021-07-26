@@ -1,4 +1,4 @@
-import { BADGE_LIST, BADGE_SAVE } from '../../constants/actions'
+import { BADGE_EDIT, BADGE_LIST, BADGE_SAVE } from '../../constants/actions'
 
 export const BadgeReducer = (state, action) => {
 	switch (action.type) {
@@ -12,6 +12,14 @@ export const BadgeReducer = (state, action) => {
 			return {
 				...state,
 				badgeList: [...state.badgeList, action.payload],
+			}
+
+		case BADGE_EDIT:
+			return {
+				...state,
+				badgeList: state.badgeList.map((badge) =>
+					badge._id === action.payload._id ? action.payload : badge
+				),
 			}
 
 		default:
