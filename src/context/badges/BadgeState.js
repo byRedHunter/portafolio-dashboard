@@ -25,8 +25,8 @@ const BadgeState = ({ children }) => {
 				payload: result.data,
 			})
 		} catch (error) {
-			console.log(error)
-			showToast('Algo salio mal', 'error')
+			console.log(error.response)
+			showToast(error.response.data.message, 'error')
 		}
 	}
 
@@ -35,13 +35,15 @@ const BadgeState = ({ children }) => {
 		try {
 			const result = await axios.post(uri, values)
 
+			showToast('Badge agregado', 'success')
+
 			dispatch({
 				type: BADGE_SAVE,
 				payload: result.data,
 			})
 		} catch (error) {
-			console.log(error)
-			showToast('Algo salio mal', 'error')
+			console.log(error.response)
+			showToast(error.response.data.message || error.response.data, 'error')
 		}
 	}
 
@@ -57,7 +59,7 @@ const BadgeState = ({ children }) => {
 				payload: badge,
 			})
 		} catch (error) {
-			showToast(error.response.data, 'error')
+			showToast(error.response.data || error.response.data, 'error')
 		}
 	}
 

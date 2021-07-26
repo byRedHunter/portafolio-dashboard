@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react'
 import PropTypes from 'prop-types'
 import { BadgeContext } from '../context/badges/BadgeContext'
+import { showToast } from '../utils/alerts'
 
 const BadgeItem = ({ _id, title }) => {
 	const stateBadge = useContext(BadgeContext)
@@ -9,7 +10,11 @@ const BadgeItem = ({ _id, title }) => {
 	const [value, setValue] = useState(title)
 
 	const handleEdit = () => {
-		editBadge({ _id, title: value })
+		if (title !== value) {
+			editBadge({ _id, title: value })
+		} else {
+			showToast('Modifique para poder editar', 'warning')
+		}
 		setEditing(false)
 	}
 

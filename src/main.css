@@ -379,4 +379,14 @@ body {
 .badge-item img {
 	width: 3rem;
 }
+.badge-item input {
+	height: 100%;
+	outline: none;
+	border: none;
+	background: transparent;
+	color: var(--color-light);
+}
+.badge-item input:disabled {
+	color: #959595;
+}
 /* badges */

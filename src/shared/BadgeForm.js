@@ -18,7 +18,6 @@ const BadgeForm = () => {
 		if (values.title !== '') {
 			addBadgeList(values)
 			reset()
-			showToast('Badge agregado', 'success')
 		} else {
 			showToast('Ingrese un titulo para registrar', 'error')
 		}
