@@ -1,10 +1,13 @@
+import BadgeState from './context/badges/BadgeState'
 import InterfaceState from './context/interface/InterfaceState'
 import AppRoute from './routes/AppRoute'
 
 function App() {
 	return (
 		<InterfaceState>
-			<AppRoute />
+			<BadgeState>
+				<AppRoute />
+			</BadgeState>
 		</InterfaceState>
 	)
 }

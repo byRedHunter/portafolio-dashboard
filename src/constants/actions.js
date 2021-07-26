@@ -1,1 +1,4 @@
 export const CHANGE_SIDEBAR_STATE = 'CHANGE_SIDEBAR_STATE'
+
+export const BADGE_LIST = 'BADGE_LIST'
+export const BADGE_SAVE = 'BADGE_SAVE'

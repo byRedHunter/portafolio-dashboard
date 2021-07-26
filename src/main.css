@@ -72,6 +72,11 @@ body {
 	font-weight: var(--font-600);
 }
 
+.text-info {
+	margin: 2rem 0;
+	color: var(--color-orange);
+}
+
 /* loading */
 .loading-container {
 	margin: 1rem auto;
@@ -354,5 +359,24 @@ body {
 	.form-badges .form-group {
 		width: 40rem;
 	}
+}
+.badge-list {
+	margin-top: 3rem;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
+	row-gap: 2rem;
+	column-gap: 4rem;
+}
+.badge-item {
+	border-radius: 25rem;
+	background: var(--color-purple-bg);
+	display: flex;
+	justify-content: space-between;
+	padding: 0 2rem;
+	align-items: center;
+	height: 4.5rem;
+}
+.badge-item img {
+	width: 3rem;
 }
 /* badges */

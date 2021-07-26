@@ -6,7 +6,7 @@ import { InterfaceContext } from '../context/interface/InterfaceContext'
 
 const Sidebar = () => {
 	const stateInterface = useContext(InterfaceContext)
-	const { sidebarActive } = stateInterface
+	const { sidebarActive, changeSidebarState } = stateInterface
 
 	return (
 		<div className={`sidebar ${sidebarActive ? 'active' : ''}`}>
@@ -22,19 +22,35 @@ const Sidebar = () => {
 			</div>
 
 			<nav className='sidebar-nav'>
-				<Link to={ROUTES.REPORTS} className='sidebar-nav-item'>
+				<Link
+					to={ROUTES.REPORTS}
+					className='sidebar-nav-item'
+					onClick={() => changeSidebarState()}
+				>
 					<img src='/images/icons/reports.svg' alt='Reports icon' />
 					<span>Reportes</span>
 				</Link>
-				<Link to={ROUTES.BADGES} className='sidebar-nav-item'>
+				<Link
+					to={ROUTES.BADGES}
+					className='sidebar-nav-item'
+					onClick={() => changeSidebarState()}
+				>
 					<img src='/images/icons/badges.svg' alt='Badges icon' />
 					<span>Badges</span>
 				</Link>
-				<Link to={ROUTES.PROJECTS} className='sidebar-nav-item'>
+				<Link
+					to={ROUTES.PROJECTS}
+					className='sidebar-nav-item'
+					onClick={() => changeSidebarState()}
+				>
 					<img src='/images/icons/projects.svg' alt='Projects icon' />
 					<span>Proyectos</span>
 				</Link>
-				<Link to={ROUTES.YOUTUBE} className='sidebar-nav-item'>
+				<Link
+					to={ROUTES.YOUTUBE}
+					className='sidebar-nav-item'
+					onClick={() => changeSidebarState()}
+				>
 					<img src='/images/icons/youtube.svg' alt='Youtube icon' />
 					<span>YouTube</span>
 				</Link>
