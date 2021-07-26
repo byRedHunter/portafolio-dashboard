@@ -1,27 +1,36 @@
-import React from 'react'
+import React, { useState } from 'react'
+import axios from 'axios'
 import { useForm } from '../hooks/useForm'
 import { showToast } from '../utils/axios'
+import Loading from '../shared/Loading'
 
 const Badges = () => {
-	const { values, handleInputChange } = useForm({ title: '' })
+	const { values, reset, handleInputChange } = useForm({ title: '' })
+	const [loading, setLoading] = useState(false)
 
 	const handleSubmit = async (e) => {
 		e.preventDefault()
+		setLoading(true)
 
 		if (values.title !== '') {
 			try {
-				console.log(`${process.env.REACT_APP_BASE_URL}badge`)
-				/* const result = await axios.post(
+				const result = await axios.post(
 					`${process.env.REACT_APP_BASE_URL}badge`,
 					values
 				)
-				console.log(result) */
+				if (result.status === 200) {
+					reset()
+					showToast('Badge agregado', 'success')
+				}
 			} catch (error) {
 				console.log(error)
+				showToast('Algo salio mal', 'error')
 			}
 		} else {
 			showToast('Ingrese un titulo para registrar', 'error')
 		}
+
+		setLoading(false)
 	}
 
 	return (
@@ -43,7 +52,7 @@ const Badges = () => {
 					/>
 				</div>
 
-				<button className='button'>Agregar</button>
+				{loading ? <Loading /> : <button className='button'>Agregar</button>}
 			</form>
 
 			<h3 className='subtitle'>Lista de Badges</h3>
