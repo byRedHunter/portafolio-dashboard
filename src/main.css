@@ -428,6 +428,7 @@ body {
 	overflow: hidden;
 	border-radius: var(--radius);
 	position: relative;
+	box-shadow: var(--shadow);
 }
 .video-content {
 	padding: 4rem 2rem;
