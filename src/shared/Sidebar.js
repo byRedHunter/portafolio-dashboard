@@ -38,22 +38,36 @@ const Sidebar = () => {
 					<img src='/images/icons/badges.svg' alt='Badges icon' />
 					<span>Badges</span>
 				</Link>
-				<Link
-					to={ROUTES.PROJECTS}
-					className='sidebar-nav-item'
-					onClick={() => changeSidebarState()}
-				>
+				<div className='sidebar-nav-item submenu'>
 					<img src='/images/icons/projects.svg' alt='Projects icon' />
 					<span>Proyectos</span>
-				</Link>
-				<Link
-					to={ROUTES.YOUTUBE}
-					className='sidebar-nav-item'
-					onClick={() => changeSidebarState()}
-				>
+					<div className='submenu-items'>
+						<Link to={ROUTES.PROJECTS} onClick={() => changeSidebarState()}>
+							Mis proyectos
+						</Link>
+						<Link
+							to={ROUTES.PROJECTS_NUEVO}
+							onClick={() => changeSidebarState()}
+						>
+							Registrar
+						</Link>
+					</div>
+				</div>
+				<div className='sidebar-nav-item submenu'>
 					<img src='/images/icons/youtube.svg' alt='Youtube icon' />
 					<span>YouTube</span>
-				</Link>
+					<div className='submenu-items'>
+						<Link to={ROUTES.YOUTUBE} onClick={() => changeSidebarState()}>
+							Videos
+						</Link>
+						<Link
+							to={ROUTES.YOUTUBE_NUEVO}
+							onClick={() => changeSidebarState()}
+						>
+							Registrar
+						</Link>
+					</div>
+				</div>
 			</nav>
 
 			<div className='circle-button sidebar-button pointer grid-center'>

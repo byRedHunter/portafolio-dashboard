@@ -9,22 +9,20 @@ import PublicRoute from './PublicRoute'
 const AppRoute = () => {
 	return (
 		<Router>
-			<main className='main'>
-				<Switch>
-					<PublicRoute
-						exact
-						path={ROUTES.LOGIN}
-						component={Login}
-						isAuthenticated={true}
-					/>
+			<Switch>
+				<PublicRoute
+					exact
+					path={ROUTES.LOGIN}
+					component={Login}
+					isAuthenticated={true}
+				/>
 
-					<PrivateRoute
-						path={ROUTES.DASHBOARD}
-						component={DashboardRoute}
-						isAuthenticated={true}
-					/>
-				</Switch>
-			</main>
+				<PrivateRoute
+					path={ROUTES.DASHBOARD}
+					component={DashboardRoute}
+					isAuthenticated={true}
+				/>
+			</Switch>
 		</Router>
 	)
 }

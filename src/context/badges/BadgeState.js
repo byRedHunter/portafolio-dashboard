@@ -1,12 +1,12 @@
 import React, { useReducer } from 'react'
-import axios from 'axios'
 import { BadgeReducer } from './BadgeReducer'
 import { BADGE_EDIT, BADGE_LIST, BADGE_SAVE } from '../../constants/actions'
 import { showToast } from '../../utils/alerts'
 import { BadgeContext } from './BadgeContext'
+import { clientAxios } from '../../config/axios'
 
 const BadgeState = ({ children }) => {
-	const uri = process.env.REACT_APP_BASE_URL + 'badge'
+	const uri = 'badge'
 
 	const initialState = {
 		badgeList: [],
@@ -19,21 +19,20 @@ const BadgeState = ({ children }) => {
 	// listar badges
 	const showBadgeList = async () => {
 		try {
-			const result = await axios.get(uri)
+			const result = await clientAxios.get(uri)
 			dispatch({
 				type: BADGE_LIST,
 				payload: result.data,
 			})
 		} catch (error) {
-			console.log(error.response)
-			showToast(error.response.data.message, 'error')
+			showToast('Error con el servidor', 'error')
 		}
 	}
 
 	// agregar badge
 	const addBadgeList = async (values) => {
 		try {
-			const result = await axios.post(uri, values)
+			const result = await clientAxios.post(uri, values)
 
 			showToast('Badge agregado', 'success')
 
@@ -50,7 +49,7 @@ const BadgeState = ({ children }) => {
 	// editar badge
 	const editBadge = async (badge) => {
 		try {
-			const result = await axios.put(uri + `/${badge._id}`, badge)
+			const result = await clientAxios.put(uri + `/${badge._id}`, badge)
 
 			showToast(result.data.message, 'success')
 
