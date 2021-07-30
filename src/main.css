@@ -471,3 +471,122 @@ body {
 	color: var(--color-light);
 }
 /* youtube */
+
+/* form-add */
+.form-add {
+	margin: 4rem 0 3rem 0;
+}
+.form-section {
+	width: 100%;
+	position: relative;
+}
+.form-section .form-section-body {
+	padding-bottom: 4rem;
+}
+.form-section-header {
+	display: flex;
+	column-gap: 1.5rem;
+	margin-bottom: 2rem;
+}
+.form-section-header h4 {
+	position: relative;
+	width: 100%;
+	margin-top: -0.5rem;
+	font-weight: var(--font-400);
+}
+.form-section-header h4::after {
+	content: attr(data-info);
+	left: 0;
+	top: calc(100% - 2rem);
+	position: absolute;
+	color: var(--color-purple);
+	font-weight: var(--font-300);
+}
+.form-label {
+	color: var(--color-purple-light);
+}
+.form-section-body .form-group {
+	margin-bottom: 1rem;
+}
+.form-area {
+	width: 100%;
+	max-width: 100%;
+	font-family: var(--font-family);
+	height: 20rem;
+	border-radius: 1.5rem;
+	border: 0.2rem solid var(--color-orange);
+	background: transparent;
+}
+.select-image {
+	margin-bottom: 2rem;
+	height: 4rem;
+	background: var(--color-orange);
+	color: var(--color-light);
+	border-radius: 1rem;
+	cursor: pointer;
+	border: none;
+	width: 15rem;
+}
+.preview {
+	width: 100%;
+}
+.preview img {
+	width: 100%;
+	border-radius: var(--radius);
+}
+@media screen and (min-width: 500px) {
+	.form-section-body {
+		padding-left: 5.5rem;
+	}
+	.form-add button[type='submit'] {
+		width: calc(100% - 5.5rem);
+		margin-left: 5.5rem;
+	}
+	.form-section::after,
+	.form-section::before {
+		content: '';
+		position: absolute;
+		left: 1rem;
+		width: 2rem;
+		height: 2rem;
+		background: var(--color-purple);
+		border-radius: 50%;
+		top: 5rem;
+	}
+	.form-section::before {
+		height: 85%;
+		border-radius: 0.2rem;
+		width: 0.5rem;
+		left: 1.15em;
+	}
+	.form-section-body {
+		margin-bottom: 2rem;
+	}
+}
+@media screen and (min-width: 600px) {
+	.form-section {
+		width: 80%;
+		margin: 0 auto;
+	}
+	.form-add button[type='submit'] {
+		width: calc(100% - 20%);
+		margin-left: 12%;
+	}
+}
+@media screen and (min-width: 800px) {
+	.form-section {
+		width: 100%;
+	}
+	.form-add button[type='submit'] {
+		width: calc(100% - 10%);
+	}
+}
+@media screen and (min-width: 1000px) {
+	.form-section {
+		width: 80%;
+	}
+	.form-add button[type='submit'] {
+		width: calc(100% - 20%);
+	}
+}
+/* form-add */
