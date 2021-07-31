@@ -8,8 +8,7 @@ export const useImage = (initialState) => {
 	}
 
 	const handleImageChange = ({ target }) => {
-		const files = target.files
-		setFile(files[0])
+		setFile(target.files[0])
 	}
 
 	return { file, handleImageChange, resetImage }

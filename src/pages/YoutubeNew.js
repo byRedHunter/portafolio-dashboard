@@ -1,20 +1,24 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
+import { YoutubeContext } from '../context/youtube/YoutubeContext'
 import { useForm } from '../hooks/useForm'
 import { useImage } from '../hooks/useImage'
 import { showToast } from '../utils/alerts'
 import { isImageValid, selectImage, showImage } from '../utils/image'
 
 const YoutubeNew = () => {
+	const stateYoutube = useContext(YoutubeContext)
+	const { loading, createVideo } = stateYoutube
+
 	const [urlImage, setUrlImage] = useState('')
 	const refFile = useRef(null)
 
-	const { values, handleInputChange } = useForm({
+	const { values, handleInputChange, reset } = useForm({
 		title: '',
 		description: '',
 		link: '',
 	})
 	const { title, description, link } = values
-	const { file, handleImageChange } = useImage(refFile)
+	const { file, handleImageChange, resetImage } = useImage(refFile)
 
 	const handleSubmit = (e) => {
 		e.preventDefault()
@@ -30,8 +34,14 @@ const YoutubeNew = () => {
 		}
 
 		// registrar video
-		console.log(values)
-		console.log(file)
+		const form = new FormData()
+		form.append('title', title)
+		form.append('desc', description)
+		form.append('link', link)
+		form.append('imageVideo', file)
+		createVideo(form)
+		reset()
+		resetImage()
 	}
 
 	useEffect(() => {
@@ -71,6 +81,7 @@ const YoutubeNew = () => {
 								className='form-input'
 								name='title'
 								onChange={handleInputChange}
+								value={title}
 							/>
 						</div>
 						<div className='form-group'>
@@ -82,6 +93,7 @@ const YoutubeNew = () => {
 								id='description'
 								className='form-area'
 								onChange={handleInputChange}
+								value={description}
 							></textarea>
 						</div>
 					</div>
@@ -103,6 +115,7 @@ const YoutubeNew = () => {
 								className='form-input'
 								name='link'
 								onChange={handleInputChange}
+								value={link}
 							/>
 						</div>
 						<div className='form-group'>
@@ -135,7 +148,7 @@ const YoutubeNew = () => {
 				</div>
 
 				<button type='submit' className='button'>
-					Crear Video
+					{loading ? 'Subiendo' : 'Crear Video'}
 				</button>
 			</form>
 		</>
