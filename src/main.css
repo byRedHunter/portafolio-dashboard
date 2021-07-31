@@ -516,6 +516,9 @@ body {
 	border-radius: 1.5rem;
 	border: 0.2rem solid var(--color-orange);
 	background: transparent;
+	outline: none;
+	color: var(--color-light);
+	padding: 1rem 2rem;
 }
 .select-image {
 	margin-bottom: 2rem;

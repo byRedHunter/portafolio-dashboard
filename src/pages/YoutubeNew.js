@@ -1,11 +1,60 @@
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
+import { useForm } from '../hooks/useForm'
+import { useImage } from '../hooks/useImage'
+import { showToast } from '../utils/alerts'
+import { isImageValid, selectImage, showImage } from '../utils/image'
 
 const YoutubeNew = () => {
+	const [urlImage, setUrlImage] = useState('')
+	const refFile = useRef(null)
+
+	const { values, handleInputChange } = useForm({
+		title: '',
+		description: '',
+		link: '',
+	})
+	const { title, description, link } = values
+	const { file, handleImageChange } = useImage(refFile)
+
+	const handleSubmit = (e) => {
+		e.preventDefault()
+
+		// validar campos
+		if (title === '' && description === '' && link === '') {
+			return showToast('Complete todos los campos', 'error')
+		}
+
+		// validar que haya imagen y sea valido
+		if (!isImageValid(file)) {
+			return showToast('Selecciona una imágen válida', 'error')
+		}
+
+		// registrar video
+		console.log(values)
+		console.log(file)
+	}
+
+	useEffect(() => {
+		if (file.name === undefined) return
+
+		if (!isImageValid(file)) {
+			setUrlImage('')
+			return showToast('Selecciona una imágen válida', 'error')
+		}
+
+		showImage(file, setUrlImage)
+	}, [file])
+
 	return (
 		<>
 			<h2 className='title'>Nuevo Video</h2>
 
-			<form className='form-add'>
+			<form
+				className='form-add'
+				autoComplete='off'
+				onSubmit={handleSubmit}
+				encType='multipart/form-data'
+			>
 				<div className='form-section'>
 					<div className='form-section-header'>
 						<img src='/images/icons/youtube.svg' alt='Icono del svg' />
@@ -21,6 +70,7 @@ const YoutubeNew = () => {
 								id='title'
 								className='form-input'
 								name='title'
+								onChange={handleInputChange}
 							/>
 						</div>
 						<div className='form-group'>
@@ -31,6 +81,7 @@ const YoutubeNew = () => {
 								name='description'
 								id='description'
 								className='form-area'
+								onChange={handleInputChange}
 							></textarea>
 						</div>
 					</div>
@@ -46,22 +97,39 @@ const YoutubeNew = () => {
 							<label className='form-label' htmlFor='link'>
 								URL
 							</label>
-							<input type='text' id='link' className='form-input' name='link' />
+							<input
+								type='text'
+								id='link'
+								className='form-input'
+								name='link'
+								onChange={handleInputChange}
+							/>
 						</div>
 						<div className='form-group'>
 							<label className='form-label' htmlFor='image'>
 								Imágen
 							</label>
-							<input type='file' id='image' name='image' hidden />
-							<button type='button' className='select-image'>
+							<input
+								type='file'
+								id='image'
+								name='image'
+								hidden
+								ref={refFile}
+								onChange={handleImageChange}
+							/>
+							<button
+								type='button'
+								className='select-image'
+								onClick={() => selectImage(refFile)}
+							>
 								Elegir imágen
 							</button>
-							<figure className='preview'>
-								<img
-									src='https://cdn.pixabay.com/photo/2016/11/30/12/29/bicycle-1872682__340.jpg'
-									alt='Preview'
-								/>
-							</figure>
+
+							{urlImage && (
+								<figure className='preview'>
+									<img src={urlImage} alt='Preview' />
+								</figure>
+							)}
 						</div>
 					</div>
 				</div>
