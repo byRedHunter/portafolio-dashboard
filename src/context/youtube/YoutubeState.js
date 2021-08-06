@@ -32,7 +32,7 @@ const YoutubeState = ({ children }) => {
 		dispatch({ type: VIDEOS_LIST, payload: true })
 
 		try {
-			const result = await clientAxios.get(uri + `?limit=${state.page}`)
+			const result = await clientAxios.get(uri + `?page=${state.page}`)
 			dispatch({ type: VIDEOS_LIST_SUCCESS, payload: result.data })
 		} catch (error) {
 			dispatch({ type: VIDEOS_LIST_ERROR, payload: true })
