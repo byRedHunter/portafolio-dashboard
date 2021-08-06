@@ -133,6 +133,10 @@ body {
 .button:hover {
 	background: var(--color-purple-light);
 }
+.button.load {
+	margin: 4rem auto;
+	width: 15rem;
+}
 
 .form-group {
 	width: 100%;
@@ -225,7 +229,6 @@ body {
 	height: 15rem;
 	width: 15rem;
 	border-radius: 50%;
-	background: var(--color-purple-bg-70);
 	display: flex;
 	flex-direction: column;
 	align-items: center;

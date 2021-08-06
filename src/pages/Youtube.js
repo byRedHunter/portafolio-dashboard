@@ -6,7 +6,7 @@ import YoutubeVideo from '../shared/YoutubeVideo'
 
 const Youtube = () => {
 	const stateVideos = useContext(YoutubeContext)
-	const { videosList, error, loading, listarVideos } = stateVideos
+	const { videosList, error, loading, listarVideos, hasNextPage } = stateVideos
 
 	useEffect(() => {
 		listarVideos()
@@ -24,11 +24,18 @@ const Youtube = () => {
 			{!loading && !error && videosList.length === 0 ? (
 				<p className='text-info'>No hay videos.</p>
 			) : (
-				<section className='videos'>
-					{videosList.map((video) => (
-						<YoutubeVideo key={video._id} video={video} />
-					))}
-				</section>
+				<>
+					<section className='videos'>
+						{videosList.map((video) => (
+							<YoutubeVideo key={video._id} video={video} />
+						))}
+					</section>
+					{hasNextPage && (
+						<button className='button load' onClick={() => listarVideos()}>
+							Ver Más
+						</button>
+					)}
+				</>
 			)}
 		</>
 	)

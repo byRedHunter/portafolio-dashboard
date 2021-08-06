@@ -19,6 +19,8 @@ const YoutubeState = ({ children }) => {
 		videosList: [],
 		error: false,
 		loading: false,
+		page: 1,
+		hasNextPage: null,
 	}
 
 	const [state, dispatch] = useReducer(YoutubeReducer, initialState)
@@ -30,7 +32,7 @@ const YoutubeState = ({ children }) => {
 		dispatch({ type: VIDEOS_LIST, payload: true })
 
 		try {
-			const result = await clientAxios.get(uri)
+			const result = await clientAxios.get(uri + `?limit=${state.page}`)
 			dispatch({ type: VIDEOS_LIST_SUCCESS, payload: result.data })
 		} catch (error) {
 			dispatch({ type: VIDEOS_LIST_ERROR, payload: true })
@@ -59,6 +61,7 @@ const YoutubeState = ({ children }) => {
 				videosList: state.videosList,
 				error: state.error,
 				loading: state.loading,
+				hasNextPage: state.hasNextPage,
 				listarVideos,
 				createVideo,
 			}}

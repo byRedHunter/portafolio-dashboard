@@ -30,6 +30,8 @@ export const YoutubeReducer = (state, action) => {
 				...state,
 				error: false,
 				loading: false,
+				page: action.payload.nextPage,
+				hasNextPage: action.payload.hasNextPage,
 				videosList: [...action.payload.docs],
 			}
 
