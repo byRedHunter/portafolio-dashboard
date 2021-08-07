@@ -2,6 +2,8 @@ import {
 	VIDEOS_CREATE,
 	VIDEOS_CREATE_ERROR,
 	VIDEOS_CREATE_SUCCESS,
+	VIDEOS_EDIT,
+	VIDEOS_EDIT_ERROR,
 	VIDEOS_LIST,
 	VIDEOS_LIST_ERROR,
 	VIDEOS_LIST_SUCCESS,
@@ -11,6 +13,7 @@ export const YoutubeReducer = (state, action) => {
 	switch (action.type) {
 		case VIDEOS_LIST:
 		case VIDEOS_CREATE:
+		case VIDEOS_EDIT:
 			return {
 				...state,
 				error: false,
@@ -19,6 +22,7 @@ export const YoutubeReducer = (state, action) => {
 
 		case VIDEOS_LIST_ERROR:
 		case VIDEOS_CREATE_ERROR:
+		case VIDEOS_EDIT_ERROR:
 			return {
 				...state,
 				error: action.payload,

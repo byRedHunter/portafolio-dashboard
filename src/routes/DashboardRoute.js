@@ -10,6 +10,7 @@ const Reports = lazy(() => import('../pages/Reports'))
 const Badges = lazy(() => import('../pages/Badges'))
 const Youtube = lazy(() => import('../pages/Youtube'))
 const YoutubeNew = lazy(() => import('../pages/YoutubeNew'))
+const YoutubeEdit = lazy(() => import('../pages/YoutubeEdit'))
 
 const DashboardRoute = () => {
 	return (
@@ -23,6 +24,11 @@ const DashboardRoute = () => {
 						<Route exact path={ROUTES.BADGES} component={Badges} />
 						<Route exact path={ROUTES.PROJECTS} component={Projects} />
 						<Route exact path={ROUTES.YOUTUBE} component={Youtube} />
+						<Route
+							exact
+							path={`${ROUTES.YOUTUBE}/:id`}
+							component={YoutubeEdit}
+						/>
 						<Route exact path={ROUTES.YOUTUBE_NUEVO} component={YoutubeNew} />
 						<Redirect to={ROUTES.REPORTS} />
 					</Switch>

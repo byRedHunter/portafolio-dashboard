@@ -4,6 +4,8 @@ import {
 	VIDEOS_CREATE,
 	VIDEOS_CREATE_ERROR,
 	VIDEOS_CREATE_SUCCESS,
+	VIDEOS_EDIT,
+	VIDEOS_EDIT_ERROR,
 	VIDEOS_LIST,
 	VIDEOS_LIST_ERROR,
 	VIDEOS_LIST_SUCCESS,
@@ -17,6 +19,7 @@ const YoutubeState = ({ children }) => {
 
 	const initialState = {
 		videosList: [],
+		videEdit: null,
 		error: false,
 		loading: false,
 		page: 1,
@@ -36,6 +39,18 @@ const YoutubeState = ({ children }) => {
 			dispatch({ type: VIDEOS_LIST_SUCCESS, payload: result.data })
 		} catch (error) {
 			dispatch({ type: VIDEOS_LIST_ERROR, payload: true })
+			showToast('Error en el servidor', 'error')
+		}
+	}
+
+	// obtener video por id
+	const listarVideoById = async (id) => {
+		dispatch({ type: VIDEOS_EDIT, payload: true })
+
+		try {
+			console.log('traemos datos: ', id)
+		} catch (error) {
+			dispatch({ type: VIDEOS_EDIT_ERROR, payload: true })
 			showToast('Error en el servidor', 'error')
 		}
 	}
@@ -64,6 +79,7 @@ const YoutubeState = ({ children }) => {
 				hasNextPage: state.hasNextPage,
 				listarVideos,
 				createVideo,
+				listarVideoById,
 			}}
 		>
 			{children}
