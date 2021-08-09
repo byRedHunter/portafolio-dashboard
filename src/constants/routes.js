@@ -5,6 +5,7 @@ export const ROUTES = {
 	BADGES: '/badges',
 	PROJECTS: '/projects',
 	PROJECTS_NUEVO: '/projects-nuevo',
+	PROJECTS_EDIT: '/projects/:id',
 	YOUTUBE: '/youtube',
 	YOUTUBE_NUEVO: '/youtube-nuevo',
 }

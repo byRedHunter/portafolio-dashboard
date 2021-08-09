@@ -66,7 +66,7 @@ body {
 .title {
 	font-size: 3.2rem;
 	color: var(--color-light);
-	font-weight: var(--font-800);
+	font-weight: var(--font-600);
 }
 .subtitle {
 	font-size: 2.4rem;
@@ -134,7 +134,8 @@ body {
 	background: var(--color-purple-light);
 }
 .button.load {
-	margin: 4rem auto;
+	display: block;
+	margin: 8rem auto 2rem;
 	width: 15rem;
 }
 
@@ -234,6 +235,7 @@ body {
 	align-items: center;
 	row-gap: 1rem;
 	justify-content: center;
+	margin-bottom: 4rem;
 }
 .sidebar-logo img {
 	width: 4rem;
@@ -596,3 +598,122 @@ body {
 	}
 }
 /* form-add */
+
+/* projects */
+.projects {
+	margin: 4rem 0;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+	gap: 4rem;
+}
+.work {
+	width: 100%;
+	background: var(--color-purple-bg-80);
+	border-radius: var(--radius);
+	box-shadow: var(--shadow);
+	overflow: hidden;
+}
+.work-image {
+	position: relative;
+}
+.work-image .work-image-actions {
+	position: absolute;
+	bottom: 2rem;
+	left: 1rem;
+	display: flex;
+	justify-content: flex-end;
+	width: 95%;
+}
+.work-image-actions .button {
+	border-radius: 0.5rem;
+	width: 8rem;
+	height: 3rem;
+	display: grid;
+	place-items: center;
+	text-decoration: none;
+	font-size: 1.4rem;
+	font-weight: var(--font-300);
+}
+.work-image-actions button:last-of-type {
+	background: var(--color-orange);
+	margin-left: 1rem;
+}
+.work-content {
+	padding: 2rem 1rem 4rem;
+	display: flex;
+	flex-direction: column;
+	row-gap: 2rem;
+}
+.work-content h3 {
+	font-size: 1.8rem;
+	font-weight: var(--font-500);
+}
+.work-content p {
+	font-size: 1.4rem;
+	color: var(--color-purple-light);
+}
+.work-badges {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 1rem;
+	list-style: none;
+}
+.badge {
+	background: #000;
+	padding: 0.5rem 1rem;
+	border-radius: 25rem;
+	font-size: 1.2rem;
+	font-weight: var(--font-400);
+}
+.badge-node {
+	background: #54b689;
+}
+.badge-express {
+	background: #eee;
+}
+.badge-html {
+	background: #de6e3c;
+}
+.badge-css {
+	background: #53a7dc;
+}
+.badge-javascript {
+	background: #f1de4f;
+	color: #050505;
+}
+.badge-php {
+	background: #777baf;
+}
+.badge-react {
+	background: #62d4fa;
+	color: #050505;
+}
+.badge-sass {
+	background: #bf6b97;
+}
+.badge-bootstrap {
+	background: #563d7c;
+}
+.badge-mongo {
+	background: #58aa50;
+}
+.badge-mysql {
+	background: #00546b;
+}
+.badge-firebase {
+	background: #fcca3f;
+	color: #050505;
+}
+.work-actions {
+	margin-top: 2rem;
+}
+.work-actions a {
+	text-decoration: none;
+	padding: 1rem 3rem;
+}
+.work-actions a:last-of-type {
+	margin-left: 1rem;
+	background: var(--color-orange);
+}
+/* projects */
