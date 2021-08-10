@@ -10,7 +10,7 @@ import { ProjectContext } from './projectContext'
 import { ProjectReducer } from './projectReducer'
 
 const ProjectState = ({ children }) => {
-	const uri = 'portafolio'
+	const uri = 'portfolio'
 
 	const initialState = {
 		projectsList: [],
@@ -29,9 +29,9 @@ const ProjectState = ({ children }) => {
 
 		try {
 			const result = await clientAxios.get(
-				uri + `?page=${state.page ? state.page : 1}`
+				uri + `?page=${state.page ? state.page : 1}&limit=1`
 			)
-
+			console.log(result.data)
 			dispatch({ type: PROJECT_LIST, payload: result.data })
 		} catch (error) {
 			dispatch({ type: PROJECT_ERROR, payload: true })
@@ -43,6 +43,7 @@ const ProjectState = ({ children }) => {
 		<ProjectContext.Provider
 			value={{
 				projectsList: state.projectsList,
+				hasNextPage: state.hasNextPage,
 				error: state.error,
 				loading: state.loading,
 				listarProyectos,

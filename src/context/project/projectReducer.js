@@ -28,7 +28,7 @@ export const ProjectReducer = (state, action) => {
 				page: action.payload.nextPage,
 				hasNextPage: action.payload.hasNextPage,
 				projectEdit: {},
-				projectsList: [...action.payload.docs],
+				projectsList: [...state.projectsList, ...action.payload.docs],
 			}
 
 		default:

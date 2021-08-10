@@ -1,7 +1,9 @@
 import React from 'react'
 import Image from './Image'
 
-const ProjectItem = () => {
+const ProjectItem = ({ project }) => {
+	const { title } = project
+
 	return (
 		<article className='work'>
 			<div className='work-image'>
@@ -18,7 +20,7 @@ const ProjectItem = () => {
 			</div>
 
 			<div className='work-content'>
-				<h3>React y Firebase (subir imágenes)</h3>
+				<h3>{title}</h3>
 
 				<ul className='work-badges'>
 					<li className='badge badge-react'>react</li>
