@@ -1,6 +1,8 @@
 import { useReducer } from 'react'
 import { clientAxios } from '../../config/axios'
 import {
+	PROJECT_BADGE_ADD,
+	PROJECT_BADGE_REMOVE,
 	PROJECT_ERROR,
 	PROJECT_LIST,
 	PROJECT_START,
@@ -15,6 +17,7 @@ const ProjectState = ({ children }) => {
 	const initialState = {
 		projectsList: [],
 		projectEdit: {},
+		projectBadges: [],
 		error: false,
 		loading: false,
 		page: 1,
@@ -29,7 +32,7 @@ const ProjectState = ({ children }) => {
 
 		try {
 			const result = await clientAxios.get(
-				uri + `?page=${state.page ? state.page : 1}&limit=1`
+				uri + `?page=${state.page ? state.page : 1}`
 			)
 			console.log(result.data)
 			dispatch({ type: PROJECT_LIST, payload: result.data })
@@ -39,6 +42,14 @@ const ProjectState = ({ children }) => {
 		}
 	}
 
+	const addBadgeToProject = async (badgeId) => {
+		dispatch({ type: PROJECT_BADGE_ADD, payload: badgeId })
+	}
+
+	const removeBadgeToProject = async (badgeId) => {
+		dispatch({ type: PROJECT_BADGE_REMOVE, payload: badgeId })
+	}
+
 	return (
 		<ProjectContext.Provider
 			value={{
@@ -46,7 +57,10 @@ const ProjectState = ({ children }) => {
 				hasNextPage: state.hasNextPage,
 				error: state.error,
 				loading: state.loading,
+				projectBadges: state.projectBadges,
 				listarProyectos,
+				addBadgeToProject,
+				removeBadgeToProject,
 			}}
 		>
 			{children}

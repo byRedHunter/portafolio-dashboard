@@ -1,4 +1,6 @@
 import {
+	PROJECT_BADGE_ADD,
+	PROJECT_BADGE_REMOVE,
 	PROJECT_ERROR,
 	PROJECT_LIST,
 	PROJECT_START,
@@ -29,6 +31,20 @@ export const ProjectReducer = (state, action) => {
 				hasNextPage: action.payload.hasNextPage,
 				projectEdit: {},
 				projectsList: [...state.projectsList, ...action.payload.docs],
+			}
+
+		case PROJECT_BADGE_ADD:
+			return {
+				...state,
+				projectBadges: [...state.projectBadges, action.payload],
+			}
+
+		case PROJECT_BADGE_REMOVE:
+			return {
+				...state,
+				projectBadges: state.projectBadges.filter(
+					(id) => id !== action.payload
+				),
 			}
 
 		default:

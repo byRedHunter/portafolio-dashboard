@@ -1,6 +1,16 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
+import { BadgeContext } from '../context/badges/BadgeContext'
+import ProjectBadge from '../shared/ProjectBadge'
 
 const ProjectNew = () => {
+	const stateBadges = useContext(BadgeContext)
+	const { badgeList, showBadgeList } = stateBadges
+
+	useEffect(() => {
+		showBadgeList()
+		// eslint-disable-next-line
+	}, [])
+
 	return (
 		<>
 			<h2 className='title'>Nuevo Proyecto</h2>
@@ -48,7 +58,9 @@ const ProjectNew = () => {
 					</div>
 					<div className='form-section-body' style={{ paddingBottom: '0' }}>
 						<div className='work-badges' style={{ paddingTop: '2rem' }}>
-							<div className='badge badge-react pointer'>REACT</div>
+							{badgeList.map((badge) => (
+								<ProjectBadge key={badge._id} badge={badge} />
+							))}
 						</div>
 					</div>
 				</div>

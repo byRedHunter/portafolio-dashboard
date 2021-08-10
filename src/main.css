@@ -660,7 +660,7 @@ body {
 	list-style: none;
 }
 .badge {
-	background: #000;
+	background: var(--color-purple-bg-80);
 	padding: 0.5rem 1rem;
 	border-radius: 25rem;
 	font-size: 1.2rem;
@@ -672,10 +672,10 @@ body {
 .badge-express {
 	background: #eee;
 }
-.badge-html {
+.badge-html5 {
 	background: #de6e3c;
 }
-.badge-css {
+.badge-css3 {
 	background: #53a7dc;
 }
 .badge-javascript {
