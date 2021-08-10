@@ -3,6 +3,7 @@ import { clientAxios } from '../../config/axios'
 import {
 	PROJECT_BADGE_ADD,
 	PROJECT_BADGE_REMOVE,
+	PROJECT_CREATE,
 	PROJECT_ERROR,
 	PROJECT_LIST,
 	PROJECT_START,
@@ -50,6 +51,22 @@ const ProjectState = ({ children }) => {
 		dispatch({ type: PROJECT_BADGE_REMOVE, payload: badgeId })
 	}
 
+	const createProject = async (project) => {
+		dispatch({ type: PROJECT_START, payload: true })
+
+		try {
+			const result = await clientAxios.post(uri, project)
+
+			console.log(result)
+			dispatch({ type: PROJECT_CREATE, payload: result.data })
+			showToast('Proyecto creado', 'success')
+		} catch (error) {
+			console.log(error.response)
+			dispatch({ type: PROJECT_ERROR, payload: true })
+			showToast('Error al crear proyecto', 'error')
+		}
+	}
+
 	return (
 		<ProjectContext.Provider
 			value={{
@@ -61,6 +78,7 @@ const ProjectState = ({ children }) => {
 				listarProyectos,
 				addBadgeToProject,
 				removeBadgeToProject,
+				createProject,
 			}}
 		>
 			{children}

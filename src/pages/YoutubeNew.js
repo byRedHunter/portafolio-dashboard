@@ -24,7 +24,7 @@ const YoutubeNew = () => {
 		e.preventDefault()
 
 		// validar campos
-		if (title === '' && description === '' && link === '') {
+		if (title === '' || description === '' || link === '') {
 			return showToast('Complete todos los campos', 'error')
 		}
 
@@ -42,6 +42,7 @@ const YoutubeNew = () => {
 		createVideo(form)
 		reset()
 		resetImage()
+		setUrlImage('')
 	}
 
 	useEffect(() => {

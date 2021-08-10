@@ -1,6 +1,7 @@
 import {
 	PROJECT_BADGE_ADD,
 	PROJECT_BADGE_REMOVE,
+	PROJECT_CREATE,
 	PROJECT_ERROR,
 	PROJECT_LIST,
 	PROJECT_START,
@@ -45,6 +46,13 @@ export const ProjectReducer = (state, action) => {
 				projectBadges: state.projectBadges.filter(
 					(id) => id !== action.payload
 				),
+			}
+
+		case PROJECT_CREATE:
+			return {
+				...state,
+				error: false,
+				loading: false,
 			}
 
 		default:
