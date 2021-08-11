@@ -669,6 +669,15 @@ body {
 .badge-node {
 	background: #54b689;
 }
+.badge-figma {
+	background: #a259ff;
+}
+.badge-angular {
+	background: #b52e31;
+}
+.badge-tailwind {
+	background: #07b6d5;
+}
 .badge-express {
 	background: #eee;
 }
