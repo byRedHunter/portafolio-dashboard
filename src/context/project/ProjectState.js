@@ -5,8 +5,10 @@ import {
 	PROJECT_BADGE_REMOVE,
 	PROJECT_CREATE,
 	PROJECT_DELET,
+	PROJECT_EDITED,
 	PROJECT_ERROR,
 	PROJECT_LIST,
+	PROJECT_SELECTED,
 	PROJECT_START,
 } from '../../constants/actions'
 import { showToast } from '../../utils/alerts'
@@ -81,6 +83,50 @@ const ProjectState = ({ children }) => {
 		}
 	}
 
+	const selectProject = async (id) => {
+		dispatch({ type: PROJECT_START, payload: true })
+
+		try {
+			const result = await clientAxios.get(`${uri}/${id}`)
+			dispatch({ type: PROJECT_SELECTED, payload: result.data })
+		} catch (error) {
+			dispatch({ type: PROJECT_ERROR, payload: true })
+			showToast('Error al cargar los datos', 'error')
+		}
+	}
+
+	const editProjectImage = async (info) => {
+		dispatch({ type: PROJECT_START, payload: true })
+
+		const { id, formData } = info
+
+		try {
+			const result = await clientAxios.put(`${uri}/image/${id}`, formData)
+
+			dispatch({ type: PROJECT_EDITED, payload: result.data })
+			showToast('Imágen del proyecto actualizado', 'success')
+		} catch (error) {
+			dispatch({ type: PROJECT_ERROR, payload: true })
+			showToast('Error al cargar los datos', 'error')
+		}
+	}
+
+	const editProjectData = async (info) => {
+		dispatch({ type: PROJECT_START, payload: true })
+
+		const { id, formData } = info
+
+		try {
+			const result = await clientAxios.put(`${uri}/${id}`, formData)
+
+			dispatch({ type: PROJECT_EDITED, payload: result.data })
+			showToast('Datos del proyecto actualizado', 'success')
+		} catch (error) {
+			dispatch({ type: PROJECT_ERROR, payload: true })
+			showToast('Error al cargar los datos', 'error')
+		}
+	}
+
 	return (
 		<ProjectContext.Provider
 			value={{
@@ -89,11 +135,15 @@ const ProjectState = ({ children }) => {
 				error: state.error,
 				loading: state.loading,
 				projectBadges: state.projectBadges,
+				projectEdit: state.projectEdit,
 				listarProyectos,
 				addBadgeToProject,
 				removeBadgeToProject,
 				createProject,
 				deleteProject,
+				selectProject,
+				editProjectImage,
+				editProjectData,
 			}}
 		>
 			{children}

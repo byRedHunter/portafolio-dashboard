@@ -1,4 +1,6 @@
 import React, { useContext } from 'react'
+import { Link } from 'react-router-dom'
+import { ROUTES } from '../constants/routes'
 import { ProjectContext } from '../context/project/projectContext'
 import Image from './Image'
 
@@ -12,9 +14,9 @@ const ProjectItem = ({ project }) => {
 			<div className='work-image'>
 				<Image src={image} alt={title} />
 				<div className='work-image-actions'>
-					<a href='/edit' className='button'>
+					<Link to={`${ROUTES.PROJECTS}/${_id}`} className='button'>
 						Editar
-					</a>
+					</Link>
 					<button className='button' onClick={() => deleteProject(_id)}>
 						Eliminar
 					</button>

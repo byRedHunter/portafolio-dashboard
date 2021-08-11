@@ -3,8 +3,10 @@ import {
 	PROJECT_BADGE_REMOVE,
 	PROJECT_CREATE,
 	PROJECT_DELET,
+	PROJECT_EDITED,
 	PROJECT_ERROR,
 	PROJECT_LIST,
+	PROJECT_SELECTED,
 	PROJECT_START,
 } from '../../constants/actions'
 
@@ -32,7 +34,7 @@ export const ProjectReducer = (state, action) => {
 				page: action.payload.nextPage,
 				hasNextPage: action.payload.hasNextPage,
 				projectEdit: {},
-				projectsList: [...state.projectsList, ...action.payload.docs],
+				projectsList: [...action.payload.docs],
 			}
 
 		case PROJECT_BADGE_ADD:
@@ -65,6 +67,15 @@ export const ProjectReducer = (state, action) => {
 				projectsList: state.projectsList.filter(
 					(project) => project._id !== action.payload
 				),
+			}
+
+		case PROJECT_SELECTED:
+		case PROJECT_EDITED:
+			return {
+				...state,
+				error: false,
+				loading: false,
+				projectEdit: { ...action.payload },
 			}
 
 		default:
