@@ -4,6 +4,7 @@ import {
 	PROJECT_BADGE_ADD,
 	PROJECT_BADGE_REMOVE,
 	PROJECT_CREATE,
+	PROJECT_DELET,
 	PROJECT_ERROR,
 	PROJECT_LIST,
 	PROJECT_START,
@@ -55,15 +56,28 @@ const ProjectState = ({ children }) => {
 		dispatch({ type: PROJECT_START, payload: true })
 
 		try {
-			const result = await clientAxios.post(uri, project)
+			await clientAxios.post(uri, project)
 
-			console.log(result)
-			dispatch({ type: PROJECT_CREATE, payload: result.data })
+			dispatch({ type: PROJECT_CREATE })
 			showToast('Proyecto creado', 'success')
 		} catch (error) {
 			console.log(error.response)
 			dispatch({ type: PROJECT_ERROR, payload: true })
 			showToast('Error al crear proyecto', 'error')
+		}
+	}
+
+	const deleteProject = async (id) => {
+		dispatch({ type: PROJECT_START, payload: true })
+
+		try {
+			const result = await clientAxios.delete(`${uri}/${id}`)
+
+			dispatch({ type: PROJECT_DELET, payload: id })
+			showToast(result.data.message, 'success')
+		} catch (error) {
+			dispatch({ type: PROJECT_ERROR, payload: true })
+			showToast('Error en el servidor', 'error')
 		}
 	}
 
@@ -79,6 +93,7 @@ const ProjectState = ({ children }) => {
 				addBadgeToProject,
 				removeBadgeToProject,
 				createProject,
+				deleteProject,
 			}}
 		>
 			{children}

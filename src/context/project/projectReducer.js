@@ -2,6 +2,7 @@ import {
 	PROJECT_BADGE_ADD,
 	PROJECT_BADGE_REMOVE,
 	PROJECT_CREATE,
+	PROJECT_DELET,
 	PROJECT_ERROR,
 	PROJECT_LIST,
 	PROJECT_START,
@@ -53,6 +54,17 @@ export const ProjectReducer = (state, action) => {
 				...state,
 				error: false,
 				loading: false,
+				projectBadges: [],
+			}
+
+		case PROJECT_DELET:
+			return {
+				...state,
+				error: false,
+				loading: false,
+				projectsList: state.projectsList.filter(
+					(project) => project._id !== action.payload
+				),
 			}
 
 		default:

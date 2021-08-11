@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { ProjectContext } from '../context/project/projectContext'
 import Image from './Image'
 
 const ProjectItem = ({ project }) => {
-	const { title, badges, desc, image, preview, repository } = project
+	const { _id, title, badges, desc, image, preview, repository } = project
+	const stateProject = useContext(ProjectContext)
+	const { deleteProject } = stateProject
 
 	return (
 		<article className='work'>
@@ -12,7 +15,9 @@ const ProjectItem = ({ project }) => {
 					<a href='/edit' className='button'>
 						Editar
 					</a>
-					<button className='button'>Eliminar</button>
+					<button className='button' onClick={() => deleteProject(_id)}>
+						Eliminar
+					</button>
 				</div>
 			</div>
 
