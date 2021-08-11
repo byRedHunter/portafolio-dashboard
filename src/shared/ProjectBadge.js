@@ -1,8 +1,8 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { ProjectContext } from '../context/project/projectContext'
 
-const ProjectBadge = ({ badge }) => {
+const ProjectBadge = ({ badge, selected }) => {
 	const [isSelected, setIsSelected] = useState(false)
 	const { _id, title } = badge
 	const stateProject = useContext(ProjectContext)
@@ -12,6 +12,11 @@ const ProjectBadge = ({ badge }) => {
 		!isSelected ? addBadgeToProject(_id) : removeBadgeToProject(_id)
 		setIsSelected(!isSelected)
 	}
+
+	useEffect(() => {
+		if (selected) selectBadge()
+		// eslint-disable-next-line
+	}, [])
 
 	return (
 		<div

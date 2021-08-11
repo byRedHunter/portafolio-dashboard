@@ -28,8 +28,8 @@ const ProjectEdit = () => {
 		projectsList,
 		loading,
 		projectBadges,
+		listBadgesProject,
 		projectEdit,
-		selectProject,
 		editProjectImage,
 		editProjectData,
 	} = stateProject
@@ -38,16 +38,20 @@ const ProjectEdit = () => {
 		if (projectsList.length === 0) history.push(ROUTES.PROJECTS)
 
 		showBadgeList()
-		selectProject(id)
 		// eslint-disable-next-line
 	}, [])
 
 	useEffect(() => {
-		setDataProject({ ...projectEdit })
+		setDataProject({
+			title: projectEdit.title,
+			desc: projectEdit.desc,
+			preview: projectEdit.preview,
+			repository: projectEdit.repository,
+		})
 		setUrlImage(projectEdit.image)
 	}, [projectEdit])
 
-	const { title, desc, badges, preview, repository } = dataProject
+	const { title, desc, preview, repository } = dataProject
 
 	const handleInputChange = ({ target }) => {
 		setDataProject({ ...dataProject, [target.name]: target.value })
@@ -75,7 +79,7 @@ const ProjectEdit = () => {
 			return showToast('Complete todos los campos', 'error')
 		}
 
-		// crear formData
+		/* // crear formData
 		const formData = new FormData()
 		formData.append('title', title)
 		projectBadges.forEach((badge) => {
@@ -84,9 +88,16 @@ const ProjectEdit = () => {
 		formData.append('desc', desc)
 		formData.append('preview', preview)
 		formData.append('repository', repository)
+		console.log(title) */
 
 		// editar datos
-		editProjectData({ id, formData })
+		editProjectData(id, {
+			title,
+			badges: projectBadges,
+			desc,
+			preview,
+			repository,
+		})
 	}
 
 	const handleEditImage = (e) => {
@@ -147,12 +158,22 @@ const ProjectEdit = () => {
 				<div className='form-section'>
 					<div className='form-section-header'>
 						<img src='/images/icons/projects.svg' alt='Icono del svg' />
-						<h4 data-info='Elige los badges del proyecto'>Badges</h4>
+						<h4 data-info='Este proyecto tiene los badges a continuacion, agregue o quite'>
+							Badges
+						</h4>
 					</div>
-					<div className='form-section-body' style={{ paddingBottom: '0' }}>
-						<div className='work-badges' style={{ paddingTop: '2rem' }}>
+
+					<div
+						className='form-section-body'
+						style={{ paddingBottom: '0', paddingTop: '2rem' }}
+					>
+						<div className='work-badges'>
 							{badgeList.map((badge) => (
-								<ProjectBadge key={badge._id} badge={badge} />
+								<ProjectBadge
+									key={badge._id}
+									badge={badge}
+									selected={listBadgesProject.includes(badge._id)}
+								/>
 							))}
 						</div>
 					</div>

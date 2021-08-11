@@ -22,6 +22,7 @@ const ProjectState = ({ children }) => {
 		projectsList: [],
 		projectEdit: {},
 		projectBadges: [],
+		listBadgesProject: [],
 		error: false,
 		loading: false,
 		page: 1,
@@ -38,7 +39,6 @@ const ProjectState = ({ children }) => {
 			const result = await clientAxios.get(
 				uri + `?page=${state.page ? state.page : 1}`
 			)
-			console.log(result.data)
 			dispatch({ type: PROJECT_LIST, payload: result.data })
 		} catch (error) {
 			dispatch({ type: PROJECT_ERROR, payload: true })
@@ -111,13 +111,12 @@ const ProjectState = ({ children }) => {
 		}
 	}
 
-	const editProjectData = async (info) => {
+	const editProjectData = async (id, formData) => {
 		dispatch({ type: PROJECT_START, payload: true })
-
-		const { id, formData } = info
 
 		try {
 			const result = await clientAxios.put(`${uri}/${id}`, formData)
+			console.log(result)
 
 			dispatch({ type: PROJECT_EDITED, payload: result.data })
 			showToast('Datos del proyecto actualizado', 'success')
@@ -136,6 +135,7 @@ const ProjectState = ({ children }) => {
 				loading: state.loading,
 				projectBadges: state.projectBadges,
 				projectEdit: state.projectEdit,
+				listBadgesProject: state.listBadgesProject,
 				listarProyectos,
 				addBadgeToProject,
 				removeBadgeToProject,

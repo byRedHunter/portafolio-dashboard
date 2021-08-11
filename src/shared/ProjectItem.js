@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { Link } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { ROUTES } from '../constants/routes'
 import { ProjectContext } from '../context/project/projectContext'
 import Image from './Image'
@@ -7,16 +7,22 @@ import Image from './Image'
 const ProjectItem = ({ project }) => {
 	const { _id, title, badges, desc, image, preview, repository } = project
 	const stateProject = useContext(ProjectContext)
-	const { deleteProject } = stateProject
+	const { deleteProject, selectProject } = stateProject
+	const history = useHistory()
+
+	const handleRedirect = async () => {
+		await selectProject(_id)
+		history.push(`${ROUTES.PROJECTS}/${_id}`)
+	}
 
 	return (
 		<article className='work'>
 			<div className='work-image'>
 				<Image src={image} alt={title} />
 				<div className='work-image-actions'>
-					<Link to={`${ROUTES.PROJECTS}/${_id}`} className='button'>
+					<button className='button' onClick={handleRedirect}>
 						Editar
-					</Link>
+					</button>
 					<button className='button' onClick={() => deleteProject(_id)}>
 						Eliminar
 					</button>

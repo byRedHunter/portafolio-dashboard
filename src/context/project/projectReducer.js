@@ -57,6 +57,7 @@ export const ProjectReducer = (state, action) => {
 				error: false,
 				loading: false,
 				projectBadges: [],
+				projectEdit: {},
 			}
 
 		case PROJECT_DELET:
@@ -67,6 +68,7 @@ export const ProjectReducer = (state, action) => {
 				projectsList: state.projectsList.filter(
 					(project) => project._id !== action.payload
 				),
+				projectEdit: {},
 			}
 
 		case PROJECT_SELECTED:
@@ -76,6 +78,7 @@ export const ProjectReducer = (state, action) => {
 				error: false,
 				loading: false,
 				projectEdit: { ...action.payload },
+				listBadgesProject: [...action.payload.badges],
 			}
 
 		default:
