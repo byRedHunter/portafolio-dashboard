@@ -680,6 +680,10 @@ body {
 }
 .badge-express {
 	background: #eee;
+	color: #050505;
+}
+.badge-next {
+	background: #050505;
 }
 .badge-html5 {
 	background: #de6e3c;
