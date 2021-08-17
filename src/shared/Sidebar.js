@@ -3,10 +3,14 @@ import { Link } from 'react-router-dom'
 import Image from '../shared/Image'
 import { ROUTES } from '../constants/routes'
 import { InterfaceContext } from '../context/interface/InterfaceContext'
+import { AuthContext } from '../context/auth/AuthContext'
 
 const Sidebar = () => {
 	const stateInterface = useContext(InterfaceContext)
 	const { sidebarActive, changeSidebarState } = stateInterface
+
+	const authState = useContext(AuthContext)
+	const { cerrarSesion } = authState
 
 	return (
 		<div className={`sidebar ${sidebarActive ? 'active' : ''}`}>
@@ -70,7 +74,10 @@ const Sidebar = () => {
 				</div>
 			</nav>
 
-			<div className='circle-button sidebar-button pointer grid-center'>
+			<div
+				className='circle-button sidebar-button pointer grid-center'
+				onClick={cerrarSesion}
+			>
 				<img src='/images/icons/logout.svg' alt='Logout icon' />
 			</div>
 		</div>

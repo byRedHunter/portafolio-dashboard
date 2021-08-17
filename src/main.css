@@ -669,6 +669,9 @@ body {
 .badge-node {
 	background: #54b689;
 }
+.badge-gatsby {
+	background: #663399;
+}
 .badge-figma {
 	background: #a259ff;
 }
